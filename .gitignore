@@ -1,0 +1,10 @@
+#sensitive files; names; directories;
+
+*.pyc
+__pycache__/
+
+active_Editors*
+temporaryText*
+
+#idk,
+test_defaultTemporary.txt

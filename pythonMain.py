@@ -19,36 +19,68 @@ def placeholder01():
 # within those two actions
 # write some content
 # into the file
-def fileWrite():
+def fileWrite(filename="temporaryText.txt"):
     #check if file exists
     #
     # ...
-    if os.path.exists("temporaryText.txt"):
-        print("return_value:", os.path.exists("temporaryText.txt"))
+    if os.path.exists(filename):
         print("file exists")
     else:
-        print("return_value:", os.path.exists("temporaryText.txt"))
-        print('file doesn t exist') 
-        print('...creating file')
-        fileObj = open("temporaryText.txt". "w")
+        # print("return_value:", os.path.exists(filename))
+        # print('file doesn t exist') 
+        # print('...creating file')
+        fileObj = open(filename, "w")
         fileObj.close()
-        print('File-created.')
-    if True:
-        fileObj = open("temporaryText.txt", "a")
-        fileObj.close()
+        print('File-created')
+    # deprecated: 
+    # fileObj = open(filename, "a")
+    # fileObj.write('content---appended\n')
+    # fileObj.close()
     #write something
-#temporarily_run:
-fileWrite()
+# function required:
+# function that outputs all directories; filenames; 
+# to a txt file. 
+#write to a file
+def file_open(filename="temporaryText.txt", payload=None): #not applicable somewhere
+    fileObj = open(filename, "a")
+    fileObj.write(f'{payload}\n')
+    fileObj.close
+#switch?
+def file_open_2(filename="temporaryText.txt", payload=None): #not applicable somewhere
+    baseDir = os.getcwd()
+    print('baseDir:', baseDir)
+    # combineDTest = os.path.join(baseDir, "organize_home_Dir")
+    # print('combineDTest:', combineDTest, "type:", type(combineDTest))
+    target_Path = os.path.join(baseDir, "organize_home_Dir", filename)
+    fileObj = open(target_Path, "a")
+    fileObj.write(f'{payload}\n')
+    fileObj.close
+
+# I can utilize a switch case for 
+# - default configuration
+# - test_default configuration
 
 #attempt to use/utilize sys
-print(len(sys.argv))
-if len(sys.argv) < 0:
+if len(sys.argv) == 3:
+    if sys.argv[1] == 'default':
+        sys_argv_pos1 = "temporaryText.txt"
+    elif sys.argv[1] == 'test_default':
+        sys_argv_pos1 = "test_defaultTemporary.txt"
+    else:
+        sys_argv_pos1 = sys.argv[1]
+
+    sys_argv_pos2 = sys.argv[2]
+    # print(type(sys_argv_pos2))
+    #check if file exists:
+    fileWrite(sys_argv_pos1)
+    file_open_2(sys_argv_pos1, sys_argv_pos2)
+    print(f'"{sys_argv_pos2}" written in \'{sys_argv_pos1}\'')
+    print("system exits.")
+    sys.exit()
+else:
+    print("expect only two arguments for this command.")
     sys.exit()
 
 os.system("ls")
 # print(os.getcwd())
 # pprint(os.listdir('/home/romel-linux'))
-def file_open():
-    fileObj = open("listOfDirs.txt", "w")
-    fileObj.write('yo')
-    fileObj.close
